@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TODO List</title>
+</head>
+<body>
+    <h1>TODO List</h1>
+    <ul>
+        {% for todo in todos %}
+        <li>
+            <strong>{{ todo.title }}</strong> - {{ todo.description }}
+            <a href="{% url 'todo_update' todo.pk %}">Edit</a>
+            <form action="{% url 'todo_delete' todo.pk %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'todo_create' %}">Add New TODO</a>
+</body>
+</html>
